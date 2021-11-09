@@ -1,10 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../static/style/test_style.css">
 </head>
 <body>
 <h1>Test page</h1>
+<ul>
+    <li><b>STATIC_URL</b> - URL для использования при обращении к статическим файлам, расположенным в STATIC_ROOT</li>
+    <li><b>STATIC_ROOT</b> - Абсолютный путь к каталогу, где collectstatic будет собирать статические файлы для
+        развертывания.
+    </li>
+    <li><b>STATIC_DIRS</b> - Этот параметр определяет дополнительные местоположения, которые приложение staticfiles
+        будет проходить, если включен искатель FileSystemFinder , например, если вы используете команду управления
+        collectstatic или findstatic или используете представление обслуживания статических файлов.
+    </li>
+    <li><b>STATIC_STORAGE</b> - Механизм хранения файлов, используемый при сборе статических файлов с помощью команды
+        collectstatic management.
+    </li>
+    <li><b>STATIC_FINDERS</b> - По умолчанию будут найдены файлы, хранящиеся в параметре STATICFILES_DIRS (с
+        использованием django.contrib.staticfiles.finders.FileSystemFinder ) и в static подкаталоге каждого приложения
+        (с использованием django.contrib.staticfiles.finders.AppDirectoriesFinder ). Если присутствует несколько файлов
+        с одинаковым именем, будет использован первый найденный файл.
+    </li>
+</ul>
 </body>
 </html>
