@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Тестовая страница</h1>
+{% for todo in todo_list %}
+<ul>
+    <li>{{todo.text}}- <span>{{todo.created_at}}</span></li>
+</ul>
+
+{% endfor %}
+</body>
+</html>
