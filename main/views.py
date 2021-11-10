@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse
+import requests
+from django.shortcuts import render, HttpResponse, redirect
 from .models import ToDo, ToMeet
 
 
@@ -18,3 +19,11 @@ def test2(req):
 def toMeet(req):
     toMeet_list = ToMeet.objects.all()
     return render(req, 'meeting.html', {'toMeet_list': toMeet_list})
+
+
+def add_todo(req):
+    form = req.POST
+    text = form['todo_text']
+    todo = ToDo(text=text)
+    todo.save()
+    return redirect(test2)
