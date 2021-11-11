@@ -3,12 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="../static/style/meet_style.css">
+    <title>To Meet</title>
 </head>
 <body>
-<h1>To Meet</h1>
-<form action="{% url 'meet_person' %}" method="POST">
-     {%csrf_token%}
+<h1 style="text-align: center">To Meet</h1>
+<form action="{% url 'meet_person' %}" method="POST" class="meet_form">
+    {% csrf_token %}
     <label for="person">Person Name:
         <input
                 type="text"
@@ -29,8 +30,32 @@
 </form>
 
 <ul>
+    <li class="list_title">
+        <b>Person Name</b>
+        <b>Phone Number</b>
+        <b></b>
+    </li>
     {% for meet in toMeet_list %}
-        <li style="padding-bottom: 1em">{{ meet.person }} - <b>{{ meet.phone_number}}</b></li>
+        <li class="meet_list
+        {% if meet.is_favorite %}
+            favorite_person
+        {% endif %}
+">
+            {{ meet.person }} -
+            <p class="phone">{{ meet.phone_number }}</p>
+            <div class="person_reaction">
+                {% if meet.is_favorite %}
+                    <a href="{% url 'unmark-meet' meet.id %}">
+                        <img src="{% static 'assets/star.png' %}" class="favorite_icon"/>
+                    </a>
+                {% else %}
+                    <a href="{% url 'mark-meet' meet.id %}">
+                        <img src="{% static 'assets/star (1).png' %}" class="favorite_icon"/>
+                    </a>
+                {% endif %}
+                <a href="{% url 'delete-meet' meet.id %}">Delete</a>
+            </div>
+        </li>
     {% endfor %}
 </ul>
 </body>

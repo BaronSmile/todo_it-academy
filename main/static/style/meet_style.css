@@ -1,0 +1,60 @@
+.meet_form {
+    padding: 3em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.meet_form label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meet_form label input {
+    width: 60%;
+    padding: 5px 10px;
+}
+
+.meet_form button {
+    width: 160px;
+    margin-left: auto;
+}
+
+.list_title {
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.meet_list {
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.phone {
+    padding-left: 6em;
+}
+
+.person_reaction {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.favorite_person {
+    background-color: #fad66a;
+}
+
+.favorite_icon {
+    width: 30px;
+    height: 30px;
+}

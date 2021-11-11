@@ -15,11 +15,6 @@ def test2(req):
     return render(req, "test2.html", {"todo_list": todo_list})
 
 
-def toMeet(req):
-    toMeet_list = ToMeet.objects.all()
-    return render(req, 'meeting.html', {'toMeet_list': toMeet_list})
-
-
 def add_todo(req):
     form = req.POST
     text = form['todo_text']
@@ -28,13 +23,58 @@ def add_todo(req):
     return redirect(test2)
 
 
+def delete_todo(req, id):
+    todo = ToDo.objects.get(id=id)
+    todo.delete()
+    return redirect(test2)
+
+
+def mark_todo(req, id):
+    todo = ToDo.objects.get(id=id)
+    todo.is_favorite = True
+    todo.save()
+    return redirect(test2)
+
+
+def unmark_todo(req, id):
+    todo = ToDo.objects.get(id=id)
+    todo.is_favorite = False
+    todo.save()
+    return redirect(test2)
+
+
+def to_meet(req):
+    toMeet_list = ToMeet.objects.all()
+    return render(req, 'meeting.html', {'toMeet_list': toMeet_list})
+
+
 def meet_person(req):
     person_form = req.POST
     person_name = person_form['person_name']
     person_phone = person_form['person_phone']
     meeting = ToMeet(person=person_name, phone_number=person_phone)
     meeting.save()
-    return redirect(toMeet)
+    return redirect(to_meet)
+
+
+def delete_meet(req, id):
+    meet = ToMeet.objects.get(id=id)
+    meet.delete()
+    return redirect(to_meet)
+
+
+def mark_meet(req, id):
+    meet = ToMeet.objects.get(id=id)
+    meet.is_favorite = True
+    meet.save()
+    return redirect(to_meet)
+
+
+def unmark_meet(req, id):
+    meet = ToMeet.objects.get(id=id)
+    meet.is_favorite = False
+    meet.save()
+    return redirect(to_meet)
 
 
 def habits(req):
@@ -51,9 +91,3 @@ def add_habits(req):
     habits_all = Habits(habits_name=habits_name, done_for_today=done_for_today, comment=comment)
     habits_all.save()
     return redirect(habits)
-
-
-def delete_todo(req, id):
-    todo = ToDo.objects.get(id=id)
-    todo.delete()
-    return redirect(test2)
