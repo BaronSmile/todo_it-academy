@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,30 @@
 </head>
 <body>
 <h1>To Meet</h1>
+<form action="{% url 'meet_person' %}" method="POST">
+     {%csrf_token%}
+    <label for="person">Person Name:
+        <input
+                type="text"
+                id="person"
+                placeholder="Enter person name"
+                name="person_name"
+        >
+    </label>
+    <label for="phone">Person Phone Number:
+        <input
+                type="text"
+                id="phone"
+                placeholder="Enter person name"
+                name="person_phone"
+        >
+    </label>
+    <button>Add</button>
+</form>
 
 <ul>
-    {% for meet in toMeet_list%}
-    <li>{{meet.person}} - {{meet.date_of_meeting}}</li>
+    {% for meet in toMeet_list %}
+        <li style="padding-bottom: 1em">{{ meet.person }} - <b>{{ meet.phone_number}}</b></li>
     {% endfor %}
 </ul>
 </body>

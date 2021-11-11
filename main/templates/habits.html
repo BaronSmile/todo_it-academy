@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Habits Page</h1>
+<form method="POST" action="{% url 'add_habits' %}">
+    {% csrf_token %}
+    <input type="text" placeholder="Name" name="habits_name"><br>
+    <input type="text" placeholder="done for today" name="done_for_today"><br>
+    <textarea placeholder="comment" name="comment"></textarea><br>
+    <button>Add Habit</button>
+</form>
+<ul>
+    {% for habit in habits_text %}
+        <li>
+            <h3>Выполнено:{{ habit.done_for_today }}</h3>
+            <p>Название задачи:{{ habit.habits_name }}</p>
+            <span>Комментарии:{{ habit.comment }}</span>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
