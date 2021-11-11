@@ -51,3 +51,9 @@ def add_habits(req):
     habits_all = Habits(habits_name=habits_name, done_for_today=done_for_today, comment=comment)
     habits_all.save()
     return redirect(habits)
+
+
+def delete_todo(req, id):
+    todo = ToDo.objects.get(id=id)
+    todo.delete()
+    return redirect(test2)

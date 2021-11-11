@@ -13,8 +13,8 @@
 <body>
 <section>
     <div class="create_container">
-        <form action="{% url 'add-todo'%}" method="POST">
-            {%csrf_token%}
+        <form action="{% url 'add-todo' %}" method="POST">
+            {% csrf_token %}
             <input
                     type="text"
                     class="create_input"
@@ -25,23 +25,24 @@
         </form>
     </div>
     <div class="todo_container">
-        {% for todo in todo_list%}
-        <div class="todo_item">
-            <div class="todo_item_header">
-                <label class="checkbox_container">
-                    <input type="checkbox"/>
-                    <span class="checkmark"></span>
-                </label>
-                <h4>{{todo.text}}</h4>
-            </div>
-            <div class="todo_item_footer">
-                <p>{{todo.created_at}}</p>
-                <div class="action_btns">
-                    <img src="../static/assets/star.png" alt="star"/>
-                    <img src="../static/assets/x.png" alt="delete"/>
+        {% for todo in todo_list %}
+            <div class="todo_item">
+                <div class="todo_item_header">
+                    <label class="checkbox_container">
+                        <input type="checkbox"/>
+                        <span class="checkmark"></span>
+                    </label>
+                    <h4>{{ todo.text }}</h4>
+                </div>
+                <div class="todo_item_footer">
+                    <p>{{ todo.created_at }}</p>
+                    <div class="action_btns">
+                        <img src="../static/assets/star.png" alt="star"/>
+                        <a href="{% url 'delete-todo' todo.id %}"><img src="../static/assets/x.png"
+                                                                       alt="delete"/></a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </section>
