@@ -35,5 +35,6 @@ urlpatterns = [
                   path('delete-meet/<id>', delete_meet, name='delete-meet'),
                   path('mark-meet/<id>', mark_meet, name='mark-meet'),
                   path('unmark-meet/<id>', unmark_meet, name='unmark-meet'),
+                  path('done-todo/<id>', done_todo, name='done-todo'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

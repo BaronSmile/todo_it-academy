@@ -42,6 +42,12 @@ def unmark_todo(req, id):
     todo.save()
     return redirect(test2)
 
+def done_todo(req,id):
+    todo = ToDo.objects.get(id=id)
+    todo.is_closed = not todo.is_closed
+    todo.save()
+    return redirect(test2)
+
 
 def to_meet(req):
     toMeet_list = ToMeet.objects.all()
